@@ -1,35 +1,39 @@
 import { Button, Input, Flex, Checkbox, Heading } from "@chakra-ui/react";
-import { useSelector, useDispatch } from "react-redux";
-import { Store } from "../store/types";
-import { deleteTodo, toggleTodo, updateTodo } from "../store/actions";
+import {
+  useAppSelector,
+  useAppDispatch,
+  update,
+  remove,
+  toggle,
+} from "../store";
 
 function TodoListItems() {
-  const todos = useSelector((state: Store) => state.todos);
-  const dispatch = useDispatch();
+  const todos = useAppSelector((state) => state.todos);
+  const dispatch = useAppDispatch();
 
   return (
     <>
-      {todos.map((todo: { id: number; text: string }) => (
+      {todos.map((todo) => (
         <Flex pt={2} key={todo.id}>
-          <Checkbox onClick={() => dispatch(toggleTodo(todo.id))} />
+          <Checkbox
+            checked={todo.done}
+            onClick={() => dispatch(toggle(todo.id))}
+          />
           <Input
             mx={2}
             value={todo.text}
-            onChange={(event: { target: { value: string } }) =>
-              dispatch(updateTodo(todo.id, event.target.value))
+            onChange={(e) =>
+              dispatch(update({ id: todo.id, text: e.target.value }))
             }
           />
           <Button
             colorScheme="blue"
             mx={2}
-            onClick={() => dispatch(updateTodo(todo.id, todo.text))}
+            onClick={() => dispatch(update(todo.id, todo.text))}
           >
-            Update
+            Edit
           </Button>
-          <Button
-            colorScheme="blue"
-            onClick={() => dispatch(deleteTodo(todo.id))}
-          >
+          <Button colorScheme="blue" onClick={() => dispatch(remove(todo.id))}>
             Delete
           </Button>
         </Flex>

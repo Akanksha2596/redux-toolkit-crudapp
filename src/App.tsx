@@ -2,7 +2,7 @@ import { ChakraProvider, Box, theme } from "@chakra-ui/react";
 import { Provider } from "react-redux";
 import TodoList from "./components/TodoList";
 import TodoAdd from "./components/TodoAdd";
-import store from "./store/store";
+import store from "./store";
 import TopBar from "./components/TopBar";
 
 export default function App() {

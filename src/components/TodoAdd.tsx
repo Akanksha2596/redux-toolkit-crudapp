@@ -1,11 +1,9 @@
 import { Button, Input, Grid } from "@chakra-ui/react";
-import { useSelector, useDispatch } from "react-redux";
-import { Store } from "../store/types";
-import { addTodo, setNewTodo } from "../store/actions";
+import { useAppSelector, setNewTodo, addTodo, useAppDispatch } from "../store";
 
 function TodoAdd() {
-  const newTodo = useSelector((state: Store) => state.newTodo);
-  const dispatch = useDispatch();
+  const newTodo = useAppSelector((state) => state.newTodo);
+  const dispatch = useAppDispatch();
 
   return (
     <Grid pt={2} templateColumns="5fr 1fr" columnGap="3">
