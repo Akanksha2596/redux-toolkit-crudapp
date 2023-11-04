@@ -12,7 +12,7 @@ function TodoAdd() {
       <Input
         placeholder="New todo"
         value={newTodo}
-        onChange={(evt) => dispatch(setNewTodo(evt.target.value))}
+        onChange={(e) => dispatch(setNewTodo(e.target.value))}
       />
       <Button colorScheme="blue" onClick={() => dispatch(addTodo())}>
         Add Todo

@@ -15,8 +15,17 @@ function TodoListItems() {
           <Input
             mx={2}
             value={todo.text}
-            onChange={(evt) => dispatch(updateTodo(todo.id, evt.target.value))}
+            onChange={(event: { target: { value: string } }) =>
+              dispatch(updateTodo(todo.id, event.target.value))
+            }
           />
+          <Button
+            colorScheme="blue"
+            mx={2}
+            onClick={() => dispatch(updateTodo(todo.id, todo.text))}
+          >
+            Update
+          </Button>
           <Button
             colorScheme="blue"
             onClick={() => dispatch(deleteTodo(todo.id))}

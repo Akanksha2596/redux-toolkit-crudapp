@@ -1,4 +1,4 @@
-import { ThunkAction } from "redux-thunk";
+import { ThunkAction, ThunkDispatch } from "redux-thunk";
 import { Action } from "redux";
 
 import { Todo, Store } from "./types";
@@ -56,7 +56,7 @@ export const setTodos = (todos: Todo[]): ActionTypes => ({
 //strict type typechecking of thunk actions
 export const getTodos =
   (url: string): ThunkAction<void, Store, unknown, Action<string>> =>
-  async (dispatch) => {
+  async (dispatch: ThunkDispatch<Store, unknown, Action>) => {
     const resp = await fetch(url);
     const todos: Todo[] = await resp.json();
     dispatch(setTodos(todos));
